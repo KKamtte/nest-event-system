@@ -1,0 +1,41 @@
+syntax = "proto3";
+
+package reward_request;
+
+service RewardRequestService {
+  rpc RequestReward (RequestRewardRequest) returns (RequestRewardResponse);       // ROLE: USER
+  rpc GetRewards (GetRewardRequests) returns (RewardRequestListResponse);         // ROLE: USER
+  rpc GetRewardLog (GetRewardLogRequest) returns (GetRewardLogResponse);         // ROLE: AUDITOR/ADMIN
+}
+
+message RequestRewardRequest {
+  string eventId = 1;
+  string userId = 2;
+}
+
+message RequestRewardResponse {
+  string status = 1;
+  string message = 2;
+}
+
+message GetRewardRequests {
+}
+
+message RewardRequestListResponse {
+  repeated RewardResponse requests = 1;
+}
+
+message GetRewardLogRequest {
+}
+
+message GetRewardLogResponse {
+  repeated RewardResponse rewards = 1;
+}
+
+message RewardResponse {
+  string id = 1;
+  string eventId = 2;
+  string userId = 3;
+  string status = 4;
+  string requestedAt = 5;
+}

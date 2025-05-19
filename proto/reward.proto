@@ -1,0 +1,52 @@
+syntax = "proto3";
+
+package reward;
+
+service RewardService {
+  rpc CreateReward (CreateRewardRequest) returns (CreateRewardResponse);
+  rpc GetRewards (GetRewardRequest) returns (RewardListResponse);
+  rpc GetRewardById (GetRewardByIdRequest) returns (GetRewardByIdResponse);
+}
+
+message CreateRewardRequest {
+  string eventId = 1;
+  string name = 2;
+  string type = 3;
+  int32 quantity = 4;
+}
+
+message CreateRewardResponse {
+  string eventId = 1;
+  string name = 2;
+  string type = 3;
+  int32 quantity = 4;
+}
+
+message GetRewardRequest {
+}
+
+message RewardListResponse {
+  repeated RewardResponse rewards = 1;
+}
+
+message RewardResponse {
+  string id = 1;
+  string eventId = 2;
+  string name = 3;
+  string type = 4;
+  int32 quantity = 5;
+  string createdAt = 6;
+}
+
+message GetRewardByIdRequest {
+  string rewardId = 1;
+}
+
+message GetRewardByIdResponse {
+  string id = 1;
+  string eventId = 2;
+  string name = 3;
+  string type = 4;
+  int32 quantity = 5;
+  string createdAt = 6;
+}
